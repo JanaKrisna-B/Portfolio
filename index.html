@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jana Krisna B | Portfolio</title>
+    <style>
+        /* --- 1. GLOBAL STYLES --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #64ffda; /* A subtle teal accent for links/skills */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- 2. LAYOUT & NAV --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4rem; /* Adjusted padding */
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            font-size: 1.5rem;
+        }
+
+        .links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        /* --- 3. SECTIONS --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 15%; /* Centered with more breathing room */
+            position: relative;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        section * {
+            pointer-events: auto;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        p.subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        p.body-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* --- 4. PROJECTS GRID --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.07);
+            border-color: var(--accent);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-tech {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- 5. SKILLS TAGS --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 800px;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1.2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+
+        /* --- 6. PROFILES / FOOTER --- */
+        .profile-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .profile-btn {
+            padding: 1rem 2rem;
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .profile-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-color);
+        }
+
+        /* --- 7. CANVAS --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Jana Krisna B.</div>
+        <div class="links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#work">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div id="canvas-container"></div>
+
+    <section id="hero">
+        <h1>Engineering Intelligence,<br>Building Webs.</h1>
+        <p class="subtitle">AI & Data Science Student at SASTRA. Specializing in Computer Vision, Deep Learning, and Real-time Web Technologies.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p class="body-text">
+            I am a B.Tech Computer Science student specializing in <strong>Artificial Intelligence and Data Science</strong>. My passion lies in bridging the gap between complex machine learning models and interactive web applications.
+        </p>
+        <p class="body-text">
+            Currently, I serve as a Team Member for the <strong>ACE ML Cluster</strong>, where I facilitate workshops on Machine Learning and CNNs. I am also a Core Member of the <strong>AZAC Competitive Programming Club</strong>, actively promoting a problem-solving culture.
+        </p>
+    </section>
+
+    <section id="skills" style="min-height: 60vh;">
+        <h2>Technical Arsenal</h2>
+        <div class="skills-container">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">WebSocket</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">Transformers</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">WebRTC</span>
+            <span class="skill-tag">Django</span>
+        </div>
+    </section>
+
+    <section id="work">
+        <h2>Selected Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-title">P2P Video Chat</div>
+                <div class="project-tech">WebRTC • Node.js • WebSocket</div>
+                <div class="project-desc">
+                    A direct peer-to-peer video chat system. Implemented custom signaling for SDP/ICE exchange and NAT traversal with STUN, ensuring secure encrypted media streaming without third-party APIs.
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Collaborative Text Editor</div>
+                <div class="project-tech">React • WebSocket • Node.js</div>
+                <div class="project-desc">
+                    Real-time editor enabling multiple clients to synchronize document states instantly. Uses a lightweight protocol to broadcast content changes across active sessions with low latency.
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Vision Transformer (ViT)</div>
+                <div class="project-tech">Deep Learning • Python</div>
+                <div class="project-desc">
+                    Built a ViT from scratch for CIFAR-10 image classification. Achieved 84% accuracy using 16x16 patch embeddings, AutoAugment, and Label Smoothing without pretraining.
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Text-Driven Segmentation</div>
+                <div class="project-tech">SAM 2 • Grounding DINO</div>
+                <div class="project-desc">
+                    Developed a pipeline where users provide text prompts to extract image regions. Integrates Grounding DINO for object grounding and SAM 2 for precise mask refinement.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="min-height: 60vh;">
+        <h2>Connect</h2>
+        <p class="body-text">
+            I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+        </p>
+        <p class="subtitle" style="color: #fff; margin-top: 1rem;">janakrisna.b2402@gmail.com</p>
+        
+        <div class="profile-links">
+            <a href="https://www.linkedin.com/in/janakrisnab24" target="_blank" class="profile-btn">LinkedIn</a>
+            <a href="https://github.com/JanaKrisnaB" target="_blank" class="profile-btn">GitHub</a>
+            <a href="#" target="_blank" class="profile-btn">LeetCode</a>
+        </div>
+    </section>
+
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
+
+        // 1. Scene Setup
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x0a0a0a, 0.02); // Fog matches bg color
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // 2. Create the Object - Abstract Geometric Cloud
+        const geometry = new THREE.IcosahedronGeometry(10, 1);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x555555, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        
+        // Inner Core for accent
+        const coreGeo = new THREE.OctahedronGeometry(4, 0);
+        const coreMat = new THREE.MeshStandardMaterial({ 
+            color: 0x64ffda, 
+            roughness: 0.4,
+            metalness: 0.8,
+            wireframe: true
+        });
+
+        const outerMesh = new THREE.Mesh(geometry, material);
+        const innerMesh = new THREE.Mesh(coreGeo, coreMat);
+        
+        scene.add(outerMesh);
+        scene.add(innerMesh);
+
+        // Particles floating around
+        const particlesGeo = new THREE.BufferGeometry();
+        const particlesCount = 200;
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 50;
+        }
+        
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMat = new THREE.PointsMaterial({
+            size: 0.1,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.4
+        });
+        const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+        scene.add(particlesMesh);
+
+        // 3. Lighting
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0x64ffda, 2, 50);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
+
+        camera.position.z = 20;
+
+        // 4. Interaction Logic
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2) * 0.001;
+            mouseY = (event.clientY - window.innerHeight / 2) * 0.001;
+        });
+
+        // 5. Animation Loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            // Outer mesh slow rotation
+            outerMesh.rotation.y += 0.002;
+            outerMesh.rotation.x += 0.001;
+
+            // Inner mesh faster rotation + mouse interaction
+            innerMesh.rotation.y += 0.01 + mouseX;
+            innerMesh.rotation.x += 0.01 + mouseY;
+            
+            // Floating effect
+            innerMesh.position.y = Math.sin(elapsedTime) * 0.5;
+
+            // Particles rotation
+            particlesMesh.rotation.y = -elapsedTime * 0.05;
+
+            // Smooth camera sway
+            camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 10 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // 6. Resize Handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
